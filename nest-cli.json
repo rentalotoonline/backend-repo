@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "sourceRoot": "apps/rental-mobil/src",
+  "compilerOptions": {
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/rental-mobil/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/rental-mobil",
+  "projects": {
+    "rental-mobil": {
+      "type": "application",
+      "root": "apps/rental-mobil",
+      "entryFile": "main",
+      "sourceRoot": "apps/rental-mobil/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/rental-mobil/tsconfig.app.json"
+      }
+    },
+    "core": {
+      "type": "application",
+      "root": "apps/core",
+      "entryFile": "main",
+      "sourceRoot": "apps/core/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/core/tsconfig.app.json"
+      }
+    },
+    "entities": {
+      "type": "application",
+      "root": "apps/entities",
+      "entryFile": "main",
+      "sourceRoot": "apps/entities/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/entities/tsconfig.app.json"
+      }
+    }
+  }
+}
