@@ -13,7 +13,7 @@ export default class UserRepository implements BaseRepository<Users>{
     }
     async findByID(id: number): Promise<Users> {
         const where={id}
-        return this.repository.findOne({where})
+        return await this.repository.findOne({where})
     }
     async findBy(key: string, value: any): Promise<Users> {
         const where = keyValInjection(key,value)

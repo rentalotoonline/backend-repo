@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, Logger } from "@nestjs/common";
 import RolesRepository from "./roles.repository";
 import AppResponse from "../../../configs/src/responses";
 import { createFailResp, createSuccessResp } from "../../../helpers/src/createResponse";
@@ -26,6 +26,7 @@ export default class RoleService{
         const response = RoleAdapters.convertToResponse(result)
         return createSuccessResp(200,AppConstants.MESSAGES.SUCCESS,response)
       }catch (e) {
+        Logger.error(e)
         createFailResp(400,AppConstants.MESSAGES.BAD_REQUEST,e)
       }
     }
@@ -48,6 +49,7 @@ export default class RoleService{
         }
         return createSuccessResp(200,AppConstants.MESSAGES.SUCCESS,data)
       }catch (e) {
+        Logger.error(e)
         if(e instanceof AppException){
           createFailResp(e.getCode(),AppConstants.MESSAGES.BAD_REQUEST,e)
         }else{
@@ -63,6 +65,7 @@ export default class RoleService{
         const response = RoleAdapters.convertToResponse(result)
         return createSuccessResp(201,AppConstants.MESSAGES.CREATED,response)
       }catch (e) {
+        Logger.error(e)
         createFailResp(400,AppConstants.MESSAGES.BAD_REQUEST,e)
       }
     }
@@ -78,6 +81,7 @@ export default class RoleService{
         const response = RoleAdapters.convertToResponse(entity)
         return createSuccessResp(201,AppConstants.MESSAGES.UPDATED,response)
       }catch (e) {
+        Logger.error(e)
         createFailResp(400,AppConstants.MESSAGES.BAD_REQUEST,e)
       }
     }
@@ -88,6 +92,7 @@ export default class RoleService{
         const result = await this.repository.delete(entity)
         return createSuccessResp(200,AppConstants.MESSAGES.DELETED,null)
       }catch (e) {
+        Logger.error(e)
         createFailResp(400,AppConstants.MESSAGES.BAD_REQUEST,e)
       }
     }
