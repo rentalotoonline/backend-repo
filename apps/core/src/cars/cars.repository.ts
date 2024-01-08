@@ -7,7 +7,7 @@ import { Injectable } from "@nestjs/common";
 
 @Injectable()
 export default class CarsRepository implements BaseRepository<Cars>{
-    private relation = ['driver','carType']
+    private relation = ['driver','carType','driver.role_']
     constructor(@InjectRepository(Cars) protected repos:Repository<Cars>) {
     }
     async findByID(id: number): Promise<Cars> {

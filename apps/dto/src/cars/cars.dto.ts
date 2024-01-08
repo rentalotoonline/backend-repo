@@ -12,4 +12,6 @@ export default class CarsDto{
   car_type_code:string;setCarTypeCode;getCarTypeCode;
   @SetterGetter("N/A")
   car_description:string;setCarDescription;getCarDescription;
+  @SetterGetter(0)
+  price:string;setPrice;getPrice;
 }

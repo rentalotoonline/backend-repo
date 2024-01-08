@@ -17,10 +17,11 @@ export default class CarsService{
 		) {
 	}
 
-	async findCarByID(id:number){
+	async findCarByPlate(code:string){
 		try {
-		  const result = await this.repository.findByID(id)
+		  const result = await this.repository.findBy("plate_number",code)
 		  const response = CarsAdapter.convertToCarsResponse(result)
+		  return createSuccessResp(200,AppConstants.MESSAGES.SUCCESS,response)
 		}catch (e) {
 			Logger.error(e)
 		  	createFailResp(400,AppConstants.MESSAGES.BAD_REQUEST,e)
@@ -35,7 +36,8 @@ export default class CarsService{
 		  const carType = await this.carTypeRepository.findCarType(dto.getCarTypeCode())
 		  const entity = CarsAdapter.convertToCarsEntity(dto,driver,carType)
 		  const result = await this.repository.save(entity)
-		  const response = CarsAdapter.convertToCarsResponse(result)
+		  const cars = await this.repository.findByID(result.getId())
+		  const response = CarsAdapter.convertToCarsResponse(cars)
 		  return createSuccessResp(201,AppConstants.MESSAGES.CREATED
 		  ,response)
 		}catch (e) {

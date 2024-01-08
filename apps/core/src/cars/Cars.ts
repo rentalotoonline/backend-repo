@@ -31,5 +31,10 @@ export default class Cars{
   	setCarDescription(v){this.car_description=v}
   	getCarDescription(){return this.car_description};
 
+	@Column()
+  	price:number
+  	setPrice=(v:number)=>(this.price=v);
+	getPrice=()=>(this.price)
+
 
 }

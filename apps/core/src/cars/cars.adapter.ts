@@ -18,6 +18,7 @@ export default class CarsAdapter{
     dto.setDriverId(request.driver_id)
     dto.setCarTypeCode(request.car_type_code)
     dto.setCarDescription(request.car_description)
+    dto.setPrice(request.price)
     return dto;
   }
   static convertToCarsEntity(dto:CarsDto,driver:Users,carType:ApplicationParameter):Cars{
@@ -27,18 +28,20 @@ export default class CarsAdapter{
     entity.setIsAvailable(dto.getIsAvailable())
     entity.setDriver(driver)
     entity.setCarDescription(dto.getCarDescription())
+    entity.setPrice(dto.getPrice())
     return entity
   }
   static convertToCarsResponse(entity:Cars):CarsResponse{
         const responseUser = UserAdapter.entityToResponse(entity.getDriver())
         const responseCars:CarTypeResponse = CarTypeAdapter.entityToResponse(entity.getCarType())
         const response = new CarsResponse()
-        response.setId(entity.getId())
+        response.setId(entity.id)
         response.setDriver(responseUser)
         response.setCarType(responseCars)
         response.setPlateNumber(entity.getPlateNumber())
         response.setIsAvailable(entity.getIsAvailable())
         response.setCarDescription(entity.getCarDescription())
+        response.setPrice(entity.getPrice())
         return response;
   }
 

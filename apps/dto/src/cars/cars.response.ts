@@ -10,5 +10,5 @@ driver:CreateUserResponse;setDriver=(v)=>{this.driver=v};getDriver=()=>(this.dri
 plate_number:string;setPlateNumber=(v)=>(this.plate_number=v);getPlateNumber=()=>(this.plate_number);
 is_available:boolean;setIsAvailable=(v)=>(this.is_available=v);getIsAvailable=()=>(this.is_available);
 car_description:boolean;setCarDescription=(v)=>(this.is_available=v);getCarDescription=()=>(this.is_available);
-
+price:number;setPrice=(v:number)=>(this.price=v);getPrice=()=>(this.price)
 }

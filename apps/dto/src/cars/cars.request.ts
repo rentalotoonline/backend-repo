@@ -5,4 +5,5 @@ export default class CarsRequest{
   is_available:boolean
   car_type_code:string
   car_description: string;
+  price:number;
 }
