@@ -4,6 +4,7 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { CarsModule } from './cars/cars.module';
+import { CarTypesModule } from './car_types/car_types.module';
 import DatasourceConfiguration from "../../configs/src/databases";
 
 
@@ -15,7 +16,9 @@ import DatasourceConfiguration from "../../configs/src/databases";
     RolesModule,
     UsersModule,
     AuthModule,
-    CarsModule
+    CarsModule,
+    CarTypesModule,
+
   ]
 })
 export class RentalMobil {}

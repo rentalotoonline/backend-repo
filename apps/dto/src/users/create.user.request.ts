@@ -1,35 +1,35 @@
 export default class CreateUserRequest{
- getEmail(): string {
-  return this.email;
- }
+   getEmail(): string {
+    return this.email;
+   }
 
- setEmail(value: string) {
-  this.email = value;
- }
+   setEmail(value: string) {
+    this.email = value;
+   }
 
- getName(): string {
-  return this.name;
- }
+   getName(): string {
+    return this.name;
+   }
 
- setName(value: string) {
-  this.name = value;
- }
+   setName(value: string) {
+    this.name = value;
+   }
 
- getPassword(): string {
-  return this.password;
- }
+   getPassword(): string {
+    return this.password;
+   }
 
- setPassword(value: string) {
-  this.password = value;
- }
+   setPassword(value: string) {
+    this.password = value;
+   }
 
- getId(): number {
-  return this.id;
- }
+   getId(): number {
+    return this.id;
+   }
 
- setId(value: number) {
-  this.id = value;
- }
+   setId(value: number) {
+    this.id = value;
+   }
 
  getRoleCode(): string {
   return this.role_code;

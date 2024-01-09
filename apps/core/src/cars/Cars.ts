@@ -1,5 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import Users from "../users/Users";
+import ApplicationParameter from "../app_parameter/ApplicationParameter";
+import { SetterGetter } from "../../../helpers/src/Lombok";
 
 
 const schema="referable"
@@ -7,42 +9,32 @@ const name="cars"
 @Entity({name,schema})
 export default class Cars{
 	@PrimaryGeneratedColumn()
-  	id:number
+  	id:number;setId(v){this.id=v};getId(){return this.id}
   	@Column({unique:true})
-  	plate_number:string
+
+  	plate_number:string;setPlateNumber(v){this.plate_number=v};getPlateNumber(){return this.plate_number};
 	@ManyToOne(()=>Users,user=>user.id)
   	@JoinColumn({name:"driver_id"})
-  	driver:Users
-  	@Column()
-  	is_available:boolean;
-	setID(d:number){
-	  this.id=d
-	  return this
-	}
-	setPlateNumber(d:string){
-	  this.plate_number=d
-	  return this
-	}
-	setDriver(d:Users){
-	  this.driver=d
-	  return this
-	}
-	setAvailable(d:boolean){
-	  this.is_available=d
-	  return this
-	}
 
-	getId(){
-	  return this.id
-	}
-	getDriver(){
-	  return this.driver
-	}
-	getPlateNumber(){
-	  return this.plate_number
-	}
-	getAvailable(){
-	  return this.is_available
-	}
+  	driver:Users;setDriver=(v)=>{this.driver=v};getDriver=()=>{return this.driver};
+
+  	@ManyToOne(()=>ApplicationParameter,carType=>carType.id)
+  	@JoinColumn({name:"car_type_id"})
+  	carType:ApplicationParameter;setCarType=(v)=>{this.carType=v};getCarType=()=>{return this.carType};
+  	@Column()
+  	is_available:boolean;setIsAvailable=(v)=>{
+		this.is_available=v;
+  	}
+  	getIsAvailable(){return this.is_available};
+	@Column()
+  	car_description:string
+  	setCarDescription(v){this.car_description=v}
+  	getCarDescription(){return this.car_description};
+
+	@Column()
+  	price:number
+  	setPrice=(v:number)=>(this.price=v);
+	getPrice=()=>(this.price)
+
 
 }

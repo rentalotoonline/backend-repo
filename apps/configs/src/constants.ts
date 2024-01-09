@@ -20,6 +20,7 @@ export default class AppConstants{
 
   static APPLICATION_PARAMETER_GROUP_TYPES={
     ROLE:"APP_ROLE",
+    CAR_TYPE:"APP_CAR_TYPE",
   }
   static CIPHER = {
     ALGO:"aes-256-ctr",
