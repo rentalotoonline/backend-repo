@@ -14,4 +14,8 @@ export default class CarsDto{
   car_description:string;setCarDescription;getCarDescription;
   @SetterGetter(0)
   price:string;setPrice;getPrice;
+  @SetterGetter(false)
+  without_driver:boolean;setWithoutDriver;getWithoutDriver;
+  @SetterGetter(0)
+  driver_price:number;getDriverPrice;setDriverPrice;
 }

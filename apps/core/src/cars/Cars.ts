@@ -37,4 +37,20 @@ export default class Cars{
 	getPrice=()=>(this.price)
 
 
+	@Column({default:false})
+  	without_driver:boolean
+  	setWithoutDriver=(v:boolean)=>(this.without_driver=v);
+  	getWithoutDriver=()=>(this.without_driver)
+
+  	@Column({default:0})
+  	additional_price:number
+  	setAdditionalPrice(additionalPrice:number){
+		this.additional_price=additionalPrice
+	  return this;
+	}
+	getAdditionalPrice(){
+		return this.additional_price
+	}
+
+
 }

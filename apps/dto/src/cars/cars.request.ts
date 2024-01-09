@@ -6,4 +6,6 @@ export default class CarsRequest{
   car_type_code:string
   car_description: string;
   price:number;
+  without_driver:boolean;
+  driver_price:number;
 }
