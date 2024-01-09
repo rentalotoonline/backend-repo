@@ -19,6 +19,8 @@ export default class CarsAdapter{
     dto.setCarTypeCode(request.car_type_code)
     dto.setCarDescription(request.car_description)
     dto.setPrice(request.price)
+    dto.setWithoutDriver(request.without_driver)
+    dto.setDriverPrice(request.driver_price)
     return dto;
   }
   static convertToCarsEntity(dto:CarsDto,driver:Users,carType:ApplicationParameter):Cars{
@@ -29,6 +31,8 @@ export default class CarsAdapter{
     entity.setDriver(driver)
     entity.setCarDescription(dto.getCarDescription())
     entity.setPrice(dto.getPrice())
+    entity.setWithoutDriver(dto.getWithoutDriver())
+    entity.setAdditionalPrice(dto.getDriverPrice())
     return entity
   }
   static convertToCarsResponse(entity:Cars):CarsResponse{
@@ -42,6 +46,8 @@ export default class CarsAdapter{
         response.setIsAvailable(entity.getIsAvailable())
         response.setCarDescription(entity.getCarDescription())
         response.setPrice(entity.getPrice())
+        response.setWithoutDriver(entity.getWithoutDriver())
+        response.setDriverPrice(entity.getAdditionalPrice())
         return response;
   }
 

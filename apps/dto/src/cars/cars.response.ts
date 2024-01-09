@@ -11,4 +11,10 @@ plate_number:string;setPlateNumber=(v)=>(this.plate_number=v);getPlateNumber=()=
 is_available:boolean;setIsAvailable=(v)=>(this.is_available=v);getIsAvailable=()=>(this.is_available);
 car_description:boolean;setCarDescription=(v)=>(this.is_available=v);getCarDescription=()=>(this.is_available);
 price:number;setPrice=(v:number)=>(this.price=v);getPrice=()=>(this.price)
+without_driver:boolean;setWithoutDriver=(v:boolean)=>(this.without_driver=v);getWithoutDriver=()=>(this.without_driver)
+driver_price:number
+  setDriverPrice(additionalPrice: number) {
+    this.driver_price=additionalPrice
+    return this;
+  }
 }

@@ -26,4 +26,26 @@ export default class AppConstants{
     ALGO:"aes-256-ctr",
     SALT_ROUND:10,
   }
+  static DESTINATION_TYPE={
+    INNER_CITY:"Dalam Kota",
+    OUTER_CITY:"Luar Kota"
+  }
+  static RENTAL_TYPE={
+    WITH_DRIVER:"Dengan Supir",
+    WITHOUT_DRIVER:"Tanpa Supir"
+  }
+  static RENT_ITEM_TYPE={
+    discount:"Potongan Harga",
+    admin_pay:"Biaya Admin",
+    driver:"Biaya Tambahan(Jika Menggunakan Driver)",
+    charge:"Denda Keterlambatan(perhari)"
+  }
+  static RENT_ITEM_TYPE_ID={
+    discount:19999,
+    admin_pay:19998,
+    driver:19997,
+    charge:19996
+  }
+  static ADMIN_DEF_PAYMENT=0.1
+  static CHARGE_AMOUNT=0.05
 }
