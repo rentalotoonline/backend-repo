@@ -1,16 +1,20 @@
 import { NestFactory } from '@nestjs/core';
 import { RentalMobil } from './app.module';
 import DatasourceConfiguration from "../../configs/src/databases";
-import CarsRequest from "../../dto/src/cars/cars.request";
-import CarTypeDto from "../../dto/src/car_type/car.type.dto";
-import { getConnectionManager } from "typeorm";
+import MainSeeder from "../../seeds/main.seed";
 
 
 
 
-
+async function beforeRun(){
+ try {
+  await DatasourceConfiguration.createSchema()
+ }catch (e) {
+ }
+  //await MainSeeder.Run()
+}
 async function bootstrap() {
- await DatasourceConfiguration.createSchema()
+ await beforeRun()
 
  const app = await NestFactory.create(RentalMobil);
  await app.listen(3000);

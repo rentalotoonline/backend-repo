@@ -11,6 +11,7 @@ import RentRepository from "../../../core/src/rent/rent.repository";
 import CarsRepository from "../../../core/src/cars/cars.repository";
 import UserRepository from "../../../core/src/users/user.repository";
 import RentDetailRepository from "../../../core/src/rent_details/rent.detail.repository";
+import AppParamRepository from "../../../core/src/app_parameter/app.param.repository";
 
 @Module({
   imports:[TypeOrmModule.forFeature([Cars,ApplicationParameter,Rent,RentDetails,Users])],
@@ -21,6 +22,7 @@ import RentDetailRepository from "../../../core/src/rent_details/rent.detail.rep
     CarsRepository,
     UserRepository,
     RentDetailRepository,
+    AppParamRepository,
   ]
 })
 export class RentDetailModule {}

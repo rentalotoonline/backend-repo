@@ -4,7 +4,12 @@ import RentDetailResponse from "../../../dto/src/rent_detail/rent.detail.respons
 
 export default class RentDetailAdapter{
   static entityToResp(e:RentDetails){
-	return new RentDetailResponse().setId(e.id).setPrice(e.price).setDescription(e.item_type)
+    if(e.getCars()!=null){
+      return new RentDetailResponse().setId(e.id).setPrice(e.price).setDescription(e.getCars().getCarType().getValue())
+    }else if(e.getAppParam()!=null){
+      return new RentDetailResponse().setId(e.id).setPrice(e.price).setDescription(e.getAppParam().getValue())
+    }
+
   }
   static listEntityToResp(e:RentDetails[]){
 	return e.map(val=>{

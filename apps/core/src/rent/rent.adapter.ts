@@ -6,21 +6,30 @@ import Cars from "../cars/Cars";
 import Users from "../users/Users";
 import RentDetails from "../rent_details/rent.details";
 import RentDetailAdapter from "../rent_details/rent.detail.adapter";
+import ApplicationParameter from "../app_parameter/ApplicationParameter";
+import AppConstants from '../../../configs/src/constants';
 
 
 export default class RentAdapter {
-    static entityToResponse(entity: Rent,details:RentDetails[],car:Cars): RentResponse {
+    static entityToResponse(entity: Rent): RentResponse {
+        let cars:Cars
+        entity.getRentDetails().map(val=>{
+            if(val.getItemType()=="Cars"){
+                cars = val.getCars()
+            }
+        })
+
         return new RentResponse()
           .setId(entity.getId())
           .setCustomerName(entity.getCustomer().getName())
           .setInvoice(entity.getInvoiceNumber())
-          .setDriverName(car.getDriver().getName())
+          .setDriverName(cars.getDriver().getName())
           .setRentDate(entity.getRentDate())
           .setReturnDateEstimation(entity.getReturnEstimationDate())
           .setWithDriver(entity.getUseDriver())
           .setDiscount(entity.getDiscount())
           .setPayment(entity.getPayment())
-          .setDetail(RentDetailAdapter.listEntityToResp(details))
+          .setDetail(RentDetailAdapter.listEntityToResp(entity.getRentDetails()))
     }
     static entityToResponseList(e: Rent[]): RentResponse[] {
         throw new Error("Method not implemented.");
@@ -37,7 +46,7 @@ export default class RentAdapter {
 
 
     }
-    static dtoToEntity(dto: RentDto,customer:Users): Rent {
+    static dtoToEntity(dto: RentDto, customer: Users, statusCode: ApplicationParameter): Rent {
 	    const re = new Rent()
         re.setCustomer(customer)
         re.setRentDate(new Date(dto.getRentDate()))
@@ -46,7 +55,7 @@ export default class RentAdapter {
         re.setInvoiceNumber("")
         re.setPaymentRequestToPaymentGateway("")
         re.setReturnEstimationDate(new Date(dto.getReturnDateEstimation()))
-        re.setTerminated(false)
+        re.setTransactionStatus(statusCode)
         re.setDiscount(0)
         re.setUseDriver(dto.getWithDriver())
         return re;

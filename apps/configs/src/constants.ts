@@ -21,6 +21,8 @@ export default class AppConstants{
   static APPLICATION_PARAMETER_GROUP_TYPES={
     ROLE:"APP_ROLE",
     CAR_TYPE:"APP_CAR_TYPE",
+    TRX_STATUS:"TRX_STATUS",
+    DETAIL_TYPE:"chcarge_items",
   }
   static CIPHER = {
     ALGO:"aes-256-ctr",
@@ -28,7 +30,7 @@ export default class AppConstants{
   }
   static DESTINATION_TYPE={
     INNER_CITY:"Dalam Kota",
-    OUTER_CITY:"Luar Kota"
+    OUTER_CITY:"Luar Kota",
   }
   static RENTAL_TYPE={
     WITH_DRIVER:"Dengan Supir",
@@ -48,4 +50,38 @@ export default class AppConstants{
   }
   static ADMIN_DEF_PAYMENT=0.1
   static CHARGE_AMOUNT=0.05
+  static TRX_STATUS_ARRAY={
+    CREATED:{
+      value:"CREATED",
+      code:"trx_status_created"
+    },
+    PICK_UP:{
+      value:"PICKING UP",
+      code:"trx_status_picking_up"
+    },
+
+    HAS_RENT:{
+      value:"HAS RENT",
+      code:"trx_status_has_rent"
+    },
+
+    COMPLETED:{
+      value:"COMPLETED",
+      code:"trx_status_completed"
+    },
+    CANCELED:{
+      value:"CANCELED",
+      code:"trx_status_canceled"
+    },
+
+  }
+  static ADMIN_PAYMENT_PARAMETER="charge_admin";
+  static DRIVER_PAYMENT_PARAMETER="charge_biaya_supir";
+  static DISCOUNT_PARAMETER="discount";
+  static RELATIONS_ARRAY = {
+    RentDetails:{
+      appParam:['appParam'],
+      cars:['cars','cars.driver']
+    }
+  }
 }
