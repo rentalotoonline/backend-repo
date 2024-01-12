@@ -1,6 +1,8 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import Rent from "../rent/Rent";
 import AppConstants from "../../../configs/src/constants";
+import Cars from "../cars/Cars";
+import ApplicationParameter from '../app_parameter/ApplicationParameter';
 
 
 @Entity({name:"rent_details",schema:"transactions"})
@@ -16,18 +18,26 @@ export default class RentDetails{
   	item_type:string;
 	@Column()
   	price:number;
-	setRentId(r:Rent){
-	  this.rentId=r
+	appParam?:ApplicationParameter
+
+	cars?:Cars
+
+	setCars(car:Cars){
+		this.cars=car
+	}
+	setAppParam(app:ApplicationParameter){
+		this.appParam=app
+	}
+	setItemType(item:"ApplicationParameter"|"Cars"){
+		this.item_type=item
 	  return this;
 	}
-	setItemType(item:"discount"|"admin_pay"|"driver"|string){
-	  if (item==="discount"||item==="admin_pay"||item==="driver"){
-		this.setItemId(AppConstants.RENT_ITEM_TYPE_ID[item])
-		this.item_type=AppConstants.RENT_ITEM_TYPE[item]
-	  }else{
-		this.item_type=item
-	  }
-	  return this;
+	getCars(){
+		return this.cars
+	}
+
+	getAppParam(){
+		return this.appParam
 	}
 	setItemId(id:number){
 		this.item_id=id
@@ -40,5 +50,9 @@ export default class RentDetails{
 	setRent(e:Rent){
 	  this.rentId=e
 	  return this;
+	}
+
+	getItemType() {
+		return this.item_type;
 	}
 }

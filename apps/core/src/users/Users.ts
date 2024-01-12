@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import ApplicationParameter from "../app_parameter/ApplicationParameter";
 
 const schema="auth"
@@ -8,7 +8,7 @@ export default class Users{
     @Column({unique:true}) private email:string
     @Column() private name:string
     @Column() private password:string
-    @OneToOne(()=>ApplicationParameter)
+    @ManyToOne(()=>ApplicationParameter,role=>role.id)
     @JoinColumn() private role_:ApplicationParameter
 
     getId(): number {

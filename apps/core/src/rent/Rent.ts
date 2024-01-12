@@ -1,6 +1,8 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import Cars from "../cars/Cars";
 import Users from "../users/Users";
+import ApplicationParameter from "../app_parameter/ApplicationParameter";
+import RentDetails from "../rent_details/rent.details";
 
 @Entity({name:"rents",schema:"transactions"})
 export default class Rent{
@@ -40,13 +42,25 @@ export default class Rent{
 
 
   @Column()
-  terminated:boolean
-
-
-  @Column()
   use_driver:boolean
 
+  @ManyToOne(()=>ApplicationParameter,trx_status=>trx_status.id)
+  @JoinColumn({ name:"trx_status_code" })
+  trx_status_code:ApplicationParameter
 
+  @OneToMany(()=>RentDetails,details=>details.rentId)
+  details:RentDetails[]
+
+  setDetail(det:RentDetails[]){
+    this.details = det
+  }
+  getDetail(){
+    return this.details
+  }
+
+  getRentDetails(){
+    return this.details
+  }
   setPayment(v:number){this.payment=v}
   getPayment(){return this.payment}
   setUseDriver(v:boolean){this.use_driver=v}
@@ -71,10 +85,14 @@ export default class Rent{
 
   setPaymentRequestToPaymentGateway(v:any){this.payment_request_to_payment_gateway=JSON.stringify(v)}
   getPaymentRequestToPaymentGateway(){return JSON.parse(this.payment_request_to_payment_gateway)}
-  setTerminated(v:boolean){this.terminated=v}
-  getTerminated(){return this.terminated}
-
   setDiscount(v:number){this.discount=v}
   getDiscount(){return this.discount ?? 0}
+
+  setTransactionStatus(c:ApplicationParameter){
+    this.trx_status_code=c
+  }
+  getTransactionStatus(){
+    return this.trx_status_code
+  }
 
 }

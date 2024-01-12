@@ -10,6 +10,7 @@ import PersonalAccessToken from "../../core/src/auth/personal.access.token";
 import Cars from "../../core/src/cars/Cars";
 import Rent from "../../core/src/rent/Rent";
 import RentDetails from "../../core/src/rent_details/rent.details";
+import RentReturn from '../../core/src/rent_return/rent.return';
 
 
 
@@ -28,7 +29,25 @@ export default class DatasourceConfiguration{
         database: EnvHelper.getValue(AppConstants.DB_ENV_KEYS.DATABASE,"penjualan_development"),
         synchronize:false,
         name:"externalDS",
-        entities:[ApplicationParameter,Users,PersonalAccessToken,Cars,Rent,RentDetails],
+        entities:[ApplicationParameter,Users,PersonalAccessToken,Cars,Rent,RentDetails,RentReturn],
+        migrationsRun:true
+      })
+      await this.dataSource.initialize();
+    }
+
+    return this.dataSource
+
+}static async getDataSourceWithoutEntities(){
+    if(this.dataSource==null){
+      this.dataSource = new DataSource({
+        type:"postgres",
+        host: EnvHelper.getValue(AppConstants.DB_ENV_KEYS.HOST,"localhost"),
+        port: parseInt(EnvHelper.getValue(AppConstants.DB_ENV_KEYS.PORT,"5432")),
+        username: EnvHelper.getValue(AppConstants.DB_ENV_KEYS.USER,"postgres"),
+        password: EnvHelper.getValue(AppConstants.DB_ENV_KEYS.PASSWORD,"password"),
+        database: EnvHelper.getValue(AppConstants.DB_ENV_KEYS.DATABASE,"penjualan_development"),
+        synchronize:false,
+        name:"seederDataSource",
       })
       await this.dataSource.initialize();
     }
@@ -66,7 +85,7 @@ export default class DatasourceConfiguration{
     username: EnvHelper.getValue(AppConstants.DB_ENV_KEYS.USER,"postgres"),
     password: EnvHelper.getValue(AppConstants.DB_ENV_KEYS.PASSWORD,"password"),
     database: EnvHelper.getValue(AppConstants.DB_ENV_KEYS.DATABASE,"penjualan_development"),
-    entities:[ApplicationParameter,Users,PersonalAccessToken,Cars,Rent,RentDetails],
+    entities:[ApplicationParameter,Users,PersonalAccessToken,Cars,Rent,RentDetails,RentReturn],
     synchronize:true,
 
 

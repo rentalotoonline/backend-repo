@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import RentDetails from '../rent_details/rent.details';
 
 
 const schema="referable"
@@ -16,6 +17,8 @@ export default class ApplicationParameter{
   @Column()
   type_data:string
 
+  @OneToMany(()=>RentDetails,(rents)=>rents.appParam)
+  rentDetails:RentDetails[]
   getId(){
     return this.id
   }

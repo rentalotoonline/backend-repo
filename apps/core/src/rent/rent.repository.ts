@@ -3,12 +3,13 @@ import { InjectRepository } from "@nestjs/typeorm";
 import Rent from "./Rent";
 import { QueryRunner, Repository } from "typeorm";
 import keyValInjection from "../../../helpers/src/keyValInjection";
+import AppConstants from "../../../configs/src/constants";
 
 
 @Injectable()
 export default class RentRepository{
   fields=["terminated","customer_id",""];
-  private relations: string[]=["customer"];
+  private relations: string[]=["customer","details"];
   constructor(@InjectRepository(Rent) protected rentRepository:Repository<Rent>) {}
 
   raw(){
@@ -32,9 +33,9 @@ export default class RentRepository{
     return findby
   }
 
-  async findBy({key,value}){
+  async findBy({key,value},relation:string[]=[]){
     const where = keyValInjection(key,value)
-    return this.rentRepository.findOne({ where })
+    return this.rentRepository.findOne({ where,relations:relation })
   }
 
   async findByID(id,runner?:QueryRunner){
