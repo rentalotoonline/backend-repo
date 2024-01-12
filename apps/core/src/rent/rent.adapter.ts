@@ -32,7 +32,9 @@ export default class RentAdapter {
           .setDetail(RentDetailAdapter.listEntityToResp(entity.getRentDetails()))
     }
     static entityToResponseList(e: Rent[]): RentResponse[] {
-        throw new Error("Method not implemented.");
+        return e.map(val=>{
+            return this.entityToResponse(val)
+        })
     }
     static requestToDto(request: RentRequest): RentDto {
        return new RentDto()

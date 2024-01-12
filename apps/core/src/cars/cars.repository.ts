@@ -14,6 +14,10 @@ export default class CarsRepository {
         const is_available=true;
        return await this.repos.findOne({where:{id,is_available},relations:this.relation})
     }
+    async findWithoutScopeByID(id: number): Promise<Cars> {
+
+        return await this.repos.findOne({where:{id},relations:this.relation})
+    }
     async findByQrunnerID(id: number,qRunner:QueryRunner): Promise<Cars> {
         const is_available=true;
        return await qRunner.manager.findOne(Cars,{where:{id,is_available},relations:this.relation})

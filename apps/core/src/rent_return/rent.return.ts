@@ -26,8 +26,8 @@ export default class RentReturn{
     return this;
   }
 
-  setDateReturn(date:string){
-    this.date_return = new Date(date)
+  setDateReturn(date:Date){
+    this.date_return =date
     return this;
   }
 

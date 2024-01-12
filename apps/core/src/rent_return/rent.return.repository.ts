@@ -14,7 +14,7 @@ export default class RentReturnRepository{
 	return this;
   }
   async save(ent:RentReturn):Promise<RentReturn>{
-	return await this.queryRunner.manager.save(RentReturn,ent)
+	    return this.queryRunner.manager.save(RentReturn,ent)
   }
 
 

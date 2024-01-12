@@ -6,6 +6,12 @@ export default class RentReturnResponse extends RentReturnDto{
   	charge:number
   	excess_day:number
   	rent:RentResponse
+		total_payment:number
+
+		setTotalPayment(total:number){
+			this.total_payment = total
+			return this;
+		}
   	setCharge(ch:number){
 		this.charge=ch
 	  	return this

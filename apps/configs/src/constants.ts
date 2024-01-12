@@ -84,4 +84,5 @@ export default class AppConstants{
       cars:['cars','cars.driver']
     }
   }
+  static CHARGE_PERCENTAGE: number = 0.8
 }

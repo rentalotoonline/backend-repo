@@ -33,9 +33,9 @@ export default class RentRepository{
     return findby
   }
 
-  async findBy({key,value}){
+  async findBy({key,value},relation:string[]=[]){
     const where = keyValInjection(key,value)
-    return this.rentRepository.findOne({ where })
+    return this.rentRepository.findOne({ where,relations:relation })
   }
 
   async findByID(id,runner?:QueryRunner){

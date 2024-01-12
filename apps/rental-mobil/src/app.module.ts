@@ -8,6 +8,7 @@ import { CarTypesModule } from './car_types/car_types.module';
 import { RentDetailModule } from './rent_detail/rent_detail.module';
 import DatasourceConfiguration from "../../configs/src/databases";
 import { getConnection, getConnectionManager } from "typeorm";
+import { ReturnRentModule } from './return_rent/return_rent.module';
 import MainSeeder from "../../seeds/main.seed";
 
 
@@ -22,6 +23,7 @@ import MainSeeder from "../../seeds/main.seed";
     CarsModule,
     CarTypesModule,
     RentDetailModule,
+    ReturnRentModule,
 
   ]
 })
